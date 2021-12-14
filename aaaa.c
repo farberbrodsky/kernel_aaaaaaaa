@@ -25,7 +25,8 @@ static int device_release(struct inode * inode, struct file *file) {
 }
 
 static ssize_t device_read(struct file *file, char __user *buff, size_t length, loff_t *offset) {
-    if (copy_to_user(buff, "A", length))
+    if (length > sizeof(AAAAAAAA)) length = sizeof(AAAAAAAA);
+    if (copy_to_user(buff, AAAAAAAA, length))
         return -EFAULT;
     return length;
 }
